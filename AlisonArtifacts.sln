@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlisonArtifacts", "AlisonArtifacts\AlisonArtifacts.csproj", "{3CB65135-1D8C-4E2F-B5A6-B7447C15AEC5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtifactsDatamodel", "ArtifactsDatamodel\ArtifactsDatamodel.csproj", "{66EF7B6F-AF7C-47E6-AC91-733C496C6AF6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtifactsApp", "ArtifactsApp\ArtifactsApp.csproj", "{A2B11112-9B3D-43F4-8810-B8190B1368D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3CB65135-1D8C-4E2F-B5A6-B7447C15AEC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CB65135-1D8C-4E2F-B5A6-B7447C15AEC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CB65135-1D8C-4E2F-B5A6-B7447C15AEC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CB65135-1D8C-4E2F-B5A6-B7447C15AEC5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{66EF7B6F-AF7C-47E6-AC91-733C496C6AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66EF7B6F-AF7C-47E6-AC91-733C496C6AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66EF7B6F-AF7C-47E6-AC91-733C496C6AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66EF7B6F-AF7C-47E6-AC91-733C496C6AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2B11112-9B3D-43F4-8810-B8190B1368D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2B11112-9B3D-43F4-8810-B8190B1368D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2B11112-9B3D-43F4-8810-B8190B1368D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2B11112-9B3D-43F4-8810-B8190B1368D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
