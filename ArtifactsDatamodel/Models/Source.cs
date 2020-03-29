@@ -4,6 +4,9 @@ using System.Text;
 
 namespace ArtifactsDatamodel.Models
 {
+    /// <summary>
+    /// Where the artifact was acquired
+    /// </summary>
     public class Source
     {
         public int Id { get; set; }
