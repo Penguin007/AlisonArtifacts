@@ -4,6 +4,9 @@ using System.Text;
 
 namespace ArtifactsDatamodel.Models
 {
+    /// <summary>
+    /// The owner of the artifact
+    /// </summary>
     public class Owner
     {
         public int Id { get; set; }
