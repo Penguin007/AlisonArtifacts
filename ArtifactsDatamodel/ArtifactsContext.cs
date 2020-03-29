@@ -5,7 +5,8 @@ namespace ArtifactsData
 {
     public class ArtifactsContext : DbContext
     {
-        public ArtifactsContext() : base() { }
+        public ArtifactsContext(DbContextOptions<ArtifactsContext> options)
+            : base(options){ }
         public virtual DbSet<Artifact> Artifacts { get; set; }
 
         public virtual DbSet<Class> Classes { get; set; }

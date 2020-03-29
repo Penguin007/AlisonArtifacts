@@ -7,7 +7,7 @@ namespace ArtifactsData
 {
     public class Artifact
     {
-        public int Id { get; }
+        public int Id { get; set; }
 
         [Required]
         public string CommonNameOne { get; set; }
@@ -27,8 +27,6 @@ namespace ArtifactsData
 
         public int FamilyId { get; set; }
 
-        public int GenusId { get; set;}
-
         public int KingdomId { get; set; }
 
         public int PhylumId { get; set; }
@@ -42,7 +40,7 @@ namespace ArtifactsData
         [Required]
         public int Quantity { get; set; }
 
-        public Decimal ApproxValue { get; set; }
+        public float ApproxValue { get; set; }
 
         public DateTime? AquiredDate { get; set; }
 
@@ -57,31 +55,20 @@ namespace ArtifactsData
 
         public DateTime? LastDiscoveredDate { get; set; }
 
-        [ForeignKey("ClassID")]
         public virtual Class Class { get; set; }
 
-        [ForeignKey("FamilyId")]
         public virtual Family Family { get; set; }
 
-        [ForeignKey("GenusId")]
-        public virtual Genus Genus { get; set; }
-
-        [ForeignKey("KingdomId")]
         public virtual Kingdom Kingdom { get; set; }
 
-        [ForeignKey("OrderId")]
         public virtual Order Order { get; set; }
 
-        [ForeignKey("PhylumId")]
         public virtual Phylum Phylum { get; set; }
 
-        [ForeignKey("SpeciesId")]
         public virtual Species Species { get; set; }
 
-        [ForeignKey("OwnerId")]
         public virtual Owner Owner { get; set; }
 
-        [ForeignKey("SourceId")]
         public virtual Source Source { get; set; }
     }
 }
