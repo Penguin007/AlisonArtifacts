@@ -1,0 +1,155 @@
+﻿@model IEnumerable<ArtifactsApp.Models.Artifact>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CommonNameOne)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommonNameTwo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommonNameThree)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommonNameFour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommonNameFive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApproxValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AquiredDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDonated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsExtinct)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstDiscoveredDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastDiscoveredDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Class)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Family)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kingdom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phylum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Species)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Source)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommonNameOne)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommonNameTwo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommonNameThree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommonNameFour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommonNameFive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApproxValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AquiredDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDonated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsExtinct)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstDiscoveredDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastDiscoveredDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Family.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kingdom.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phylum.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Species.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Source.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
