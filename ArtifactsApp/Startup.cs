@@ -12,6 +12,10 @@ using ArtifactsApp.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using ArtifactsApp.Services;
+using ArtifactsApp.Repos;
+using ArtifactsApp.Repos.Contracts;
 
 namespace ArtifactsApp
 {
@@ -32,6 +36,11 @@ namespace ArtifactsApp
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
+            services.AddScoped<IArtifactsRepository, ArtifactsRepository>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

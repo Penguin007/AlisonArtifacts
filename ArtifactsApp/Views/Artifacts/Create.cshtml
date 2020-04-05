@@ -1,15 +1,16 @@
-﻿@model ArtifactsApp.Models.Artifact
+﻿@model ArtifactsApp.Models.ViewModels.ArtifactCreateViewModel
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Artifact</h4>
+<script src="~/js/JQuery3.1.4.js"></script>
+<script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+<h1>Add Artifacts</h1>
 <hr />
 <div class="row">
     <div class="col-md-12">
+
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row">
@@ -50,78 +51,102 @@
             <div class="row">
                 <div class="col-12 form-group">
                     <label asp-for="Description" class="control-label"></label>
-                    <textarea asp-for="Description" class="form-control rounded-0" rows="20"></textarea>
+                    <textarea asp-for="Description" class="form-control rounded-0" rows="10"></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-4 form-group">
-                <label asp-for="ClassId" class="control-label"></label>
-                <select asp-for="ClassId" class="form-control" asp-items="ViewBag.ClassId"></select>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#classModal">+</button>
+            <div class="row">
+                <div class="col-3 form-group">
+                    <label asp-for="KingdomId" class="control-label"></label>
+                    <select asp-for="KingdomId" class="form-control" asp-items="ViewBag.KingdomId"></select>
+                </div>
+                <div class="col-3 form-group">
+                    <label asp-for="PhylumId" class="control-label"></label>
+                    <select asp-for="PhylumId" class="form-control" asp-items="ViewBag.PhylumId"></select>
+                </div>
+                <div class="col-3 form-group">
+                    <label asp-for="ClassId" class="control-label"></label>
+                    <select asp-for="ClassId" class="form-control" asp-items="ViewBag.ClassId"></select>
+                </div>
+                <div class="col-3 form-group">
+                    <label asp-for="FamilyId" class="control-label"></label>
+                    <select asp-for="FamilyId" class="form-control" asp-items="ViewBag.FamilyId"></select>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="FamilyId" class="control-label"></label>
-                <select asp-for="FamilyId" class="form-control" asp-items="ViewBag.FamilyId"></select>
+            <div class="row">
+                <div class="col-4 form-group">
+                    <input type="checkbox" id="speciesCheck">
+                    <label for="speciesCheck">Add New Species</label>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="KingdomId" class="control-label"></label>
-                <select asp-for="KingdomId" class="form-control" asp-items="ViewBag.KingdomId"></select>
+            <div class="row">
+                <div id="speciesList" class="col-4 form-group">
+                    <label asp-for="SpeciesId" class="control-label"></label>
+                    <select asp-for="SpeciesId" class="form-control" asp-items="ViewBag.SpeciesId"></select>
+                </div>
+                <div id="speciesTextbox" class="col-4 form-group" style="display:none;">
+                    <label asp-for="SpeciesText" class="control-label"></label>
+                    <input asp-for="SpeciesText" class="form-control" />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="PhylumId" class="control-label"></label>
-                <select asp-for="PhylumId" class="form-control" asp-items="ViewBag.PhylumId"></select>
+            <div class="row">
+                <div class="col-4 form-group">
+                    <label asp-for="SourceId" class="control-label"></label>
+                    <select asp-for="SourceId" class="form-control" asp-items="ViewBag.SourceId"></select>
+                </div>
+
             </div>
-            <div class="form-group">
-                <label asp-for="SpeciesId" class="control-label"></label>
-                <select asp-for="SpeciesId" class="form-control" asp-items="ViewBag.SpeciesId"></select>
+            <div class="row">
+                <div class="col-4 form-group">
+                    <label asp-for="OwnerId" class="control-label"></label>
+                    <select asp-for="OwnerId" class="form-control" asp-items="ViewBag.OwnerId"></select>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="SourceId" class="control-label"></label>
-                <select asp-for="SourceId" class="form-control" asp-items="ViewBag.SourceId"></select>
+            <div class="row">
+                <div class="col-2 form-group">
+                    <label asp-for="Quantity" class="control-label"></label>
+                    <input asp-for="Quantity" class="form-control" />
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+                <div class="col-4 form-group">
+                    <label asp-for="ApproxValue" class="control-label"></label>
+                    <input asp-for="ApproxValue" class="form-control" />
+                    <span asp-validation-for="ApproxValue" class="text-danger"></span>
+                </div>
+                <div class="col-4 form-group">
+                    <label asp-for="AquiredDate" class="control-label"></label>
+                    <input asp-for="AquiredDate" class="form-control" />
+                    <span asp-validation-for="AquiredDate" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="OwnerId" class="control-label"></label>
-                <select asp-for="OwnerId" class="form-control" asp-items="ViewBag.OwnerId"></select>
+            <div class="row">
+                <div class="col-4 form-group">
+                    <input asp-for="IsDonated" id="donatedCheck" /> @Html.DisplayNameFor(model => model.IsDonated)
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
+            <div class="row">
+                <div id="dvDonated" class="col-4 form-group" style="display:none;">
+                    <label asp-for="DonatedBy" class="control-label"></label>
+                    <input asp-for="DonatedBy" class="form-control" />
+                    <span asp-validation-for="DonatedBy" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ApproxValue" class="control-label"></label>
-                <input asp-for="ApproxValue" class="form-control" />
-                <span asp-validation-for="ApproxValue" class="text-danger"></span>
+            <div class="row">
+                <div class="col-4 form-group">
+                    <input asp-for="IsExtinct" id="extinctCheck" /> @Html.DisplayNameFor(model => model.IsExtinct)
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="AquiredDate" class="control-label"></label>
-                <input asp-for="AquiredDate" class="form-control" />
-                <span asp-validation-for="AquiredDate" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsDonated" /> @Html.DisplayNameFor(model => model.IsDonated)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="DonatedBy" class="control-label"></label>
-                <input asp-for="DonatedBy" class="form-control" />
-                <span asp-validation-for="DonatedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsExtinct" /> @Html.DisplayNameFor(model => model.IsExtinct)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="FirstDiscoveredDate" class="control-label"></label>
-                <input asp-for="FirstDiscoveredDate" class="form-control" />
-                <span asp-validation-for="FirstDiscoveredDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastDiscoveredDate" class="control-label"></label>
-                <input asp-for="LastDiscoveredDate" class="form-control" />
-                <span asp-validation-for="LastDiscoveredDate" class="text-danger"></span>
+            <div class="row">
+                <div class="col-4 form-group ExtinctDiv" style="display:none;">
+                    <label asp-for="FirstDiscoveredDate" class="control-label"></label>
+                    <input asp-for="FirstDiscoveredDate" class="form-control" />
+                    <span asp-validation-for="FirstDiscoveredDate" class="text-danger"></span>
+                </div>
+                <div class="col-4 form-group ExtinctDiv" style="display:none;">
+                    <label asp-for="LastDiscoveredDate" class="control-label"></label>
+                    <input asp-for="LastDiscoveredDate" class="form-control" />
+                    <span asp-validation-for="LastDiscoveredDate" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -134,54 +159,40 @@
 
     <a asp-action="Index">Back to List</a>
 </div>
-<div class="modal fade" id="classModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add new class</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <input type="text" id="AddNewClassTxt" name="AddNewClassTxt" />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" id="AddNewClassBtn" class="btn btn-primary" onclick="DoAjaxPostAndMore(this)">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-@*<form asp-action="AddNewClass" data-target="#AddNewClassTxt">
+    <script>
+        $(document).ready(function() {
 
-
-    </form>*@
-<script>
-    function DoAjaxPostAndMore(btnClicked) {
-        alert('here');
-        $.ajax({
-            type: "POST",
-            url: "Artifacts/AddNewClass",
-            data: { newClassName: $("#AddNewClassTxt").val },
-            async: true,
-            error: function (xhr, status, error) {
-                //do something about the error
-            },
-            success: function (response) {
-                //do something with response
-                alert('Here');
-
+        $('#speciesCheck').change(function() {
+            if (this.checked) {
+                $("#speciesList").hide();
+                $("#speciesTextbox").show();
             }
+            else {
+                $("#speciesList").show();
+                $("#speciesTextbox").hide();
+            }        
         });
+        $('#donatedCheck').change(function() {
+            if (this.checked) {
+                $("#dvDonated").show();
+            }
+            else {
+                $("#dvDonated").hide();
+            }        
+        });
+        $('#extinctCheck').change(function() {
+            if (this.checked) {
+                $(".ExtinctDiv").show();
+            }
+            else {
+                $(".ExtinctDiv").hide();
+            }        
+        });
+});
 
-        return false;// if it's a link to prevent post
 
+    </script>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }
-
-
-</script>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

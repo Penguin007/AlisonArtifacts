@@ -6,6 +6,8 @@
     <title>@ViewData["Title"] - ArtifactsApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script type="text/javascript" src="~/js/JQuery3.1.4.js"></script>
+    <script type="text/javascript" src="~/js/jquery.unobtrusive-ajax.min.js"></script>
 </head>
 <body>
     <header>
@@ -24,6 +26,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Artifacts" asp-action="Index">Artifacts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Sources" asp-action="Index">Sources</a>
                         </li>
                     </ul>
                 </div>
