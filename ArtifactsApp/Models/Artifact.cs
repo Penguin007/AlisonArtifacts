@@ -27,26 +27,29 @@ namespace ArtifactsApp.Models
         [Required]
         public string Description { get; set; }
 
+        [Display(Name = "Order")]
+        public int? OrderId { get; set; }
+
         [Display(Name = "Class")]
-        public int ClassId { get; set; }
+        public int? ClassId { get; set; }
 
         [Display(Name = "Family")]
-        public int FamilyId { get; set; }
+        public int? FamilyId { get; set; }
 
         [Display(Name = "Kingdom")]
-        public int KingdomId { get; set; }
+        public int? KingdomId { get; set; }
 
         [Display(Name = "Phylum")]
-        public int PhylumId { get; set; }
+        public int? PhylumId { get; set; }
 
         [Display(Name = "Species")]
-        public int SpeciesId { get; set; }
+        public int? SpeciesId { get; set; }
 
         [Display(Name = "Source")]
-        public int SourceId { get; set; }
+        public int? SourceId { get; set; }
 
         [Display(Name = "Owner")]
-        public int OwnerId { get; set; }
+        public int? OwnerId { get; set; }
 
         [Required]
         [DataType(DataType.Currency)]

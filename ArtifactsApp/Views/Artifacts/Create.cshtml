@@ -57,36 +57,40 @@
             </div>
             <div class="row">
                 <div class="col-3 form-group">
-                    <label asp-for="KingdomId" class="control-label"></label>
-                    <select asp-for="KingdomId" class="form-control" asp-items="ViewBag.KingdomId"></select>
+                    <label asp-for="KingdomText" class="control-label"></label>
+                    <input asp-for="KingdomText" class="form-control" />
+                    <span asp-validation-for="KingdomText" class="text-danger"></span>
                 </div>
                 <div class="col-3 form-group">
-                    <label asp-for="PhylumId" class="control-label"></label>
-                    <select asp-for="PhylumId" class="form-control" asp-items="ViewBag.PhylumId"></select>
+                    <label asp-for="PhylumText" class="control-label"></label>
+                    <input asp-for="PhylumText" class="form-control" />
+                    <span asp-validation-for="PhylumText" class="text-danger"></span>
                 </div>
                 <div class="col-3 form-group">
-                    <label asp-for="ClassId" class="control-label"></label>
-                    <select asp-for="ClassId" class="form-control" asp-items="ViewBag.ClassId"></select>
+                    <label asp-for="ClassText" class="control-label"></label>
+                    <input asp-for="ClassText" class="form-control" />
+                    <span asp-validation-for="ClassText" class="text-danger"></span>
                 </div>
                 <div class="col-3 form-group">
-                    <label asp-for="FamilyId" class="control-label"></label>
-                    <select asp-for="FamilyId" class="form-control" asp-items="ViewBag.FamilyId"></select>
+                    <label asp-for="OrderText" class="control-label"></label>
+                    <input asp-for="OrderText" class="form-control" />
                 </div>
             </div>
             <div class="row">
                 <div class="col-4 form-group">
-                    <input type="checkbox" id="speciesCheck">
-                    <label for="speciesCheck">Add New Species</label>
+                    <label asp-for="FamilyText" class="control-label"></label>
+                    <input asp-for="FamilyText" class="form-control" />
+                    <span asp-validation-for="FamilyText" class="text-danger"></span>
                 </div>
-            </div>
-            <div class="row">
-                <div id="speciesList" class="col-4 form-group">
-                    <label asp-for="SpeciesId" class="control-label"></label>
-                    <select asp-for="SpeciesId" class="form-control" asp-items="ViewBag.SpeciesId"></select>
+                <div class="col-4 form-group">
+                    <label asp-for="GenusText" class="control-label"></label>
+                    <input asp-for="GenusText" class="form-control" id="txtGenus" />
+                    <span asp-validation-for="GenusText" class="text-danger"></span>
                 </div>
-                <div id="speciesTextbox" class="col-4 form-group" style="display:none;">
+                <div class="col-4 form-group">
                     <label asp-for="SpeciesText" class="control-label"></label>
-                    <input asp-for="SpeciesText" class="form-control" />
+                    <input asp-for="SpeciesText" class="form-control" id="txtSpecies" />
+                    <span asp-validation-for="SpeciesText" class="text-danger"></span>
                 </div>
             </div>
             <div class="row">
@@ -94,9 +98,6 @@
                     <label asp-for="SourceId" class="control-label"></label>
                     <select asp-for="SourceId" class="form-control" asp-items="ViewBag.SourceId"></select>
                 </div>
-
-            </div>
-            <div class="row">
                 <div class="col-4 form-group">
                     <label asp-for="OwnerId" class="control-label"></label>
                     <select asp-for="OwnerId" class="form-control" asp-items="ViewBag.OwnerId"></select>
@@ -115,13 +116,16 @@
                 </div>
                 <div class="col-4 form-group">
                     <label asp-for="AquiredDate" class="control-label"></label>
-                    <input asp-for="AquiredDate" class="form-control" />
+                    <input asp-for="AquiredDate" class="form-control" type="date" />
                     <span asp-validation-for="AquiredDate" class="text-danger"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-4 form-group">
                     <input asp-for="IsDonated" id="donatedCheck" /> @Html.DisplayNameFor(model => model.IsDonated)
+                </div>
+                <div class="col-4 form-group">
+                    <input asp-for="IsExtinct" id="extinctCheck" /> @Html.DisplayNameFor(model => model.IsExtinct)
                 </div>
             </div>
             <div class="row">
@@ -130,13 +134,6 @@
                     <input asp-for="DonatedBy" class="form-control" />
                     <span asp-validation-for="DonatedBy" class="text-danger"></span>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-4 form-group">
-                    <input asp-for="IsExtinct" id="extinctCheck" /> @Html.DisplayNameFor(model => model.IsExtinct)
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-4 form-group ExtinctDiv" style="display:none;">
                     <label asp-for="FirstDiscoveredDate" class="control-label"></label>
                     <input asp-for="FirstDiscoveredDate" class="form-control" />
@@ -147,6 +144,12 @@
                     <input asp-for="LastDiscoveredDate" class="form-control" />
                     <span asp-validation-for="LastDiscoveredDate" class="text-danger"></span>
                 </div>
+            </div>
+            <div class="row">
+
+            </div>
+            <div class="row">
+      
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -160,18 +163,19 @@
     <a asp-action="Index">Back to List</a>
 </div>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
+            $("#txtGenus")
+                .focusout(function () {
+                    var genusTxt = $("#txtGenus").val();
+                    var input = $("#txtSpecies");
+                    input.focus();
+                    input.val('');
+                    input.val(genusTxt + ' ');
+              })
+              //.blur(function() {
+              //  $( "#txtSpecies" ).text($(this).text);
+              //});
 
-        $('#speciesCheck').change(function() {
-            if (this.checked) {
-                $("#speciesList").hide();
-                $("#speciesTextbox").show();
-            }
-            else {
-                $("#speciesList").show();
-                $("#speciesTextbox").hide();
-            }        
-        });
         $('#donatedCheck').change(function() {
             if (this.checked) {
                 $("#dvDonated").show();

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ArtifactsApp.Models;
+﻿using ArtifactsApp.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +10,7 @@ namespace ArtifactsApp.Data
             : base(options)
         {
         }
-        public virtual DbSet<Artifact> Artifact { get; set; }
+        public virtual Microsoft.EntityFrameworkCore.DbSet<Artifact> Artifact { get; set; }
 
         public virtual DbSet<Class> Class { get; set; }
 
@@ -32,5 +29,13 @@ namespace ArtifactsApp.Data
         public virtual DbSet<Source> Source { get; set; }
 
         public virtual DbSet<Species> Species { get; set; }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Species>()
+        //        .HasOptional(s => s.Phyla)
+        //        .Wi
+        //        .WillCascadeOnDelete(false);
+        //}
     }
 }
