@@ -64,6 +64,9 @@ namespace ArtifactsApp.Data.Migrations
                     b.Property<DateTime?>("FirstDiscoveredDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("GenusId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDonated")
                         .HasColumnType("bit");
 
@@ -99,6 +102,8 @@ namespace ArtifactsApp.Data.Migrations
                     b.HasIndex("ClassId");
 
                     b.HasIndex("FamilyId");
+
+                    b.HasIndex("GenusId");
 
                     b.HasIndex("KingdomId");
 
@@ -609,6 +614,10 @@ namespace ArtifactsApp.Data.Migrations
                     b.HasOne("ArtifactsApp.Models.Family", "Family")
                         .WithMany()
                         .HasForeignKey("FamilyId");
+
+                    b.HasOne("ArtifactsApp.Models.Genus", "Genus")
+                        .WithMany()
+                        .HasForeignKey("GenusId");
 
                     b.HasOne("ArtifactsApp.Models.Kingdom", "Kingdom")
                         .WithMany()

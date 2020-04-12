@@ -1,0 +1,7 @@
+﻿$primary: #40e0d0; //turquoise
+
+@import "../lib/bootstrap/scss/bootstrap";
+
+nav.navbar {
+    background: linear-gradient($primary, $white)
+}

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArtifactsApp.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace ArtifactsApp.Repos.Contracts
         Task<int?> FamilyExists(string name);
         Task<int?> GenusExists(string name);
         Task<int?> SpeciesExists(string name);
+
+        Task<List<ArtifactIndexViewModel>> GetArtifactsAsync();
 
         Task<int> GetGenusByName(string name);
         Task<int> GetSpeciesByName(string name);

@@ -24,7 +24,6 @@ namespace ArtifactsApp.Models.ViewModels
         public string OrderText { get; set; }
 
         [Display(Name = "Family")]
-        [Required]
         public string FamilyText { get; set; }
 
         [Display(Name = "Genus")]

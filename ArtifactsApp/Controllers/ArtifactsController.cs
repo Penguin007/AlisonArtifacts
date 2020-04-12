@@ -29,8 +29,8 @@ namespace ArtifactsApp.Controllers
         // GET: Artifacts
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Artifact.Include(a => a.Class).Include(a => a.Family).Include(a => a.Kingdom).Include(a => a.Owner).Include(a => a.Phylum).Include(a => a.Source).Include(a => a.Species);
-            return View(await applicationDbContext.ToListAsync());
+            //var applicationDbContext = _context.Artifact.Include(a => a.Class).Include(a => a.Family).Include(a => a.Kingdom).Include(a => a.Owner).Include(a => a.Phylum).Include(a => a.Source).Include(a => a.Species);
+            return View(await _artifactRepository.GetArtifactsAsync());
         }
 
         // GET: Artifacts/Details/5
@@ -62,13 +62,8 @@ namespace ArtifactsApp.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewData["ClassId"] = new SelectList(_context.Class, "Id", "Name");
-            ViewData["FamilyId"] = new SelectList(_context.Family, "Id", "Id");
-            ViewData["KingdomId"] = new SelectList(_context.Kingdom, "Id", "Id");
-            ViewData["OwnerId"] = new SelectList(_context.Owner, "Id", "Id");
-            ViewData["PhylumId"] = new SelectList(_context.Phylum, "Id", "Id");
+            ViewData["OwnerId"] = new SelectList(_context.Owner, "Id", "LastName");
             ViewData["SourceId"] = new SelectList(_context.Source, "Id", "BusinessName");
-            ViewData["SpeciesId"] = new SelectList(_context.Species, "Id", "Id");
             return View();
         }
 
@@ -92,9 +87,8 @@ namespace ArtifactsApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OwnerId"] = new SelectList(_context.Owner, "Id", "Id", artifact.OwnerId);
-            ViewData["SourceId"] = new SelectList(_context.Source, "Id", "Id", artifact.SourceId);
-            ViewData["SpeciesId"] = new SelectList(_context.Species, "Id", "Id", artifact.SpeciesId);
+            ViewData["OwnerId"] = new SelectList(_context.Owner, "Id", "LastName", artifact.OwnerId);
+            ViewData["SourceId"] = new SelectList(_context.Source, "Id", "BusinessName", artifact.SourceId);
             return View(artifact);
         }
 

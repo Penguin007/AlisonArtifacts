@@ -8,7 +8,7 @@ namespace ArtifactsApp.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "Common Name 1")]
+        [Display(Name = "Name")]
         [Required]
         public string CommonNameOne { get; set; }
 
@@ -42,6 +42,9 @@ namespace ArtifactsApp.Models
         [Display(Name = "Phylum")]
         public int? PhylumId { get; set; }
 
+        [Display(Name = "Genus")]
+        public int? GenusId { get; set; }
+
         [Display(Name = "Species")]
         public int? SpeciesId { get; set; }
 
@@ -52,14 +55,14 @@ namespace ArtifactsApp.Models
         public int? OwnerId { get; set; }
 
         [Required]
-        [DataType(DataType.Currency)]
         public int Quantity { get; set; }
 
         [Required]
-        [Display(Name = "Approx. Value")]
+        [Display(Name = "Value")]
+        [DataType(DataType.Currency)]
         public float ApproxValue { get; set; }
 
-        [Display(Name = "Date Acquired")]
+        [Display(Name = "Acquired")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? AquiredDate { get; set; }
 
@@ -90,6 +93,8 @@ namespace ArtifactsApp.Models
         public virtual Order Order { get; set; }
 
         public virtual Phylum Phylum { get; set; }
+
+        public virtual Genus Genus { get; set; }
 
         public virtual Species Species { get; set; }
 

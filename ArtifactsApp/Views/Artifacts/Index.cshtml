@@ -1,103 +1,79 @@
-﻿@model IEnumerable<ArtifactsApp.Models.Artifact>
+﻿@model IEnumerable<ArtifactsApp.Models.ViewModels.ArtifactIndexViewModel>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+
+
+<h1>Artifacts</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table" id="ArtifactsTable" width="100%">
+    <thead class="thead-dark">
         <tr>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.CommonNameOne)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CommonNameTwo)
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.PhylumText)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CommonNameThree)
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.ClassText)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CommonNameFour)
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.OrderText)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CommonNameFive)
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.FamilyText)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.GenusText)
             </th>
-            <th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.SpeciesText)
+            </th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Quantity)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.ApproxValue)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.AquiredDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsDonated)
+                @Html.DisplayNameFor(model => model.SourceId)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DonatedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsExtinct)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstDiscoveredDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastDiscoveredDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Class)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Family)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Kingdom)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phylum)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Species)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Owner)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Source)
-            </th>
-            <th></th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
-            <td>
+            <th scope="row" class="text-nowrap">
                 @Html.DisplayFor(modelItem => item.CommonNameOne)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhylumText)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CommonNameTwo)
+                @Html.DisplayFor(modelItem => item.ClassText)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CommonNameThree)
+                @Html.DisplayFor(modelItem => item.OrderText)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CommonNameFour)
+                @Html.DisplayFor(modelItem => item.FamilyText)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CommonNameFive)
+                @Html.DisplayFor(modelItem => item.GenusText)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.SpeciesText)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quantity)
@@ -109,47 +85,22 @@
                 @Html.DisplayFor(modelItem => item.AquiredDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsDonated)
+                @Html.DisplayFor(modelItem => item.Source.BusinessName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DonatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsExtinct)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstDiscoveredDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastDiscoveredDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Class.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Family.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Kingdom.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phylum.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Species.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Owner.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Source.Id)
-            </td>
-            <td>
+            <td style="white-space:nowrap">
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
+@section Scripts{
+    <script type="text/html" src="~/js/datatables.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#ArtifactsTable').dataTable();
+            });
+        </script>
+}

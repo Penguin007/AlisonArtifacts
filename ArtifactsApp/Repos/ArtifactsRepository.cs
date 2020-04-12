@@ -1,8 +1,10 @@
 ﻿using ArtifactsApp.Data;
 using ArtifactsApp.Models;
+using ArtifactsApp.Models.ViewModels;
 using ArtifactsApp.Repos.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -74,6 +76,43 @@ namespace ArtifactsApp.Repos
         {
             var species = await _context.Species.FirstOrDefaultAsync(e => e.Name.ToUpper() == name.ToUpper().Trim());
             return species?.Id;
+        }
+
+        public async Task<List<ArtifactIndexViewModel>> GetArtifactsAsync()
+        {
+            
+            var artifactIndexList = await (from artifacts in _context.Artifact
+                            join phylums in _context.Phylum on artifacts.PhylumId equals phylums.Id into phylumGroup 
+                                           from p in phylumGroup.DefaultIfEmpty()
+                            join classes in _context.Class on artifacts.ClassId equals classes.Id into classGroup 
+                                           from c in classGroup.DefaultIfEmpty()
+                            join orders in _context.Order on artifacts.OrderId equals orders.Id into orderGroup 
+                                           from o in orderGroup.DefaultIfEmpty()
+                            join families in _context.Family on artifacts.FamilyId equals families.Id into familyGroup 
+                                           from f in familyGroup.DefaultIfEmpty()
+                            join genuses in _context.Genus on artifacts.GenusId equals genuses.Id into genusGroup
+                                from g in genusGroup.DefaultIfEmpty()
+                            join species in _context.Species on artifacts.SpeciesId equals species.Id into speciesGroup 
+                                           from s in speciesGroup.DefaultIfEmpty()
+                            select new ArtifactIndexViewModel
+                            {
+                                Id = artifacts.Id,
+                                CommonNameOne = artifacts.CommonNameOne,
+                                PhylumText = (p.Name) ?? "",
+                                ClassText = (c.Name) ?? "",
+                                OrderText = (o.Name) ?? "",
+                                FamilyText = (f.Name) ?? "",
+                                GenusText = (g.Name) ?? "",
+                                SpeciesText = (s.Name) ?? "",
+                                Quantity = artifacts.Quantity,
+                                ApproxValue = artifacts.ApproxValue,
+                                AquiredDate = artifacts.AquiredDate,
+                                Source = artifacts.Source,
+                                Owner = artifacts.Owner
+                            }).ToListAsync<ArtifactIndexViewModel>();
+
+            return artifactIndexList;
+            
         }
 
         public async Task<int> GetSpeciesByName(string name)
